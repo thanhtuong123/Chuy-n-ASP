@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập CMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h4>CMS Admin Login</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <form asp-action="Login" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Tên đăng nhập</label>
+                                <input type="text" name="username" class="form-control" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mật khẩu</label>
+                                <input type="password" name="password" class="form-control" required />
+                            </div>
+
+                            @if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewBag.Error
+                                </div>
+                            }
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                Đăng nhập
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <p class="text-center mt-3 text-muted">
+                    Tài khoản test: admin / 123456
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
