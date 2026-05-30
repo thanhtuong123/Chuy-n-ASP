@@ -1,0 +1,23 @@
+﻿@model CMS.Data.Entities.Post
+@{
+    Layout = "_LayoutAdmin";
+}
+<div class="container mt-4">
+    <h2 class="text-primary">@Model.Title</h2>
+
+    <p>
+        <strong>Danh mục:</strong>
+        @(Model.Category != null ? Model.Category.Name : "Chưa có danh mục")
+    </p>
+
+    <p>
+        <strong>Ngày đăng:</strong>
+        @Model.CreatedDate.ToString("dd/MM/yyyy")
+    </p>
+
+    <hr />
+
+    <p>@Model.Content</p>
+
+    <a href="/Post" class="btn btn-secondary">Quay lại</a>
+</div>
