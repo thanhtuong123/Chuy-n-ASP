@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CMS.Data.Entities.Post>
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">3 BÀI VIẾT MỚI NHẤT</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+
+                        <p>
+                            <span class="badge bg-info text-dark">
+                                @(item.Category != null ? item.Category.Name : "Chưa có danh mục")
+                            </span>
+                        </p>
+
+                        <p class="text-muted">
+                            @item.CreatedDate.ToString("dd/MM/yyyy")
+                        </p>
+
+                        <a href="/Post/Details/@item.Id" class="btn btn-primary btn-sm">
+                            Đọc tiếp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
