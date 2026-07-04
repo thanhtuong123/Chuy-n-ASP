@@ -1,0 +1,89 @@
+﻿@model CMS.Data.Entities.Order
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+<h2>Chi tiết đơn hàng #@Model.Id</h2>
+
+<hr />
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <strong>Khách hàng:</strong> @Model.Customer?.FullName
+    </div>
+
+    <div class="col-md-6">
+        <strong>Ngày đặt:</strong>
+        @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <strong>Email:</strong>
+        @Model.Customer?.Email
+    </div>
+
+    <div class="col-md-4">
+        <strong>Điện thoại:</strong>
+        @Model.Customer?.Phone
+    </div>
+
+    <div class="col-md-4">
+        <strong>Địa chỉ:</strong>
+        @Model.Customer?.Address
+    </div>
+</div>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Sản phẩm</th>
+            <th width="120">Số lượng</th>
+            <th width="150">Đơn giá</th>
+            <th width="170">Thành tiền</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            decimal total = 0;
+        }
+
+        @foreach (var item in Model.OrderDetails)
+        {
+            var thanhTien = item.Quantity * item.UnitPrice;
+
+            total += thanhTien;
+
+            <tr>
+
+                <td>@item.Product?.Name</td>
+
+                <td>@item.Quantity</td>
+
+                <td>@item.UnitPrice.ToString("N0") đ</td>
+
+                <td>@thanhTien.ToString("N0") đ</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<h4 class="text-end text-danger">
+    Tổng tiền: @total.ToString("N0") đ
+</h4>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+
+    Quay lại
+
+</a>

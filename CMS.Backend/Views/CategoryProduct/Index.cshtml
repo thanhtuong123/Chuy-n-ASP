@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CMS.Data.Entities.CategoryProduct>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Quản lý danh mục sản phẩm";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-dark m-0">QUẢN LÝ DANH MỤC SẢN PHẨM</h2>
+
+        <a asp-controller="CategoryProduct" asp-action="Create" class="btn btn-success btn-sm">
+            + Thêm danh mục sản phẩm
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped text-center shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên danh mục</th>
+                <th>Mô tả</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td class="fw-bold text-secondary">@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"
+                           class="btn btn-warning btn-sm mx-1">
+                            Sửa
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-danger btn-sm mx-1"
+                           onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?')">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

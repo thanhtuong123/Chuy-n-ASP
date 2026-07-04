@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CMS.Data.Entities.Order>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Quản lý đơn hàng";
+}
+
+<h2>Quản lý đơn hàng</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Mã ĐH</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
+            <th>Ghi chú</th>
+            <th width="220">Thao tác</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Id</td>
+
+                <td>@item.Customer?.FullName</td>
+
+                <td>@item.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+
+                <td>
+
+                    @switch (item.Status)
+                    {
+                        case 0:
+                            <span class="badge bg-warning">Chờ xác nhận</span>
+                            break;
+
+                        case 1:
+                            <span class="badge bg-primary">Đã xác nhận</span>
+                            break;
+
+                        case 2:
+                            <span class="badge bg-info">Đang giao</span>
+                            break;
+
+                        case 3:
+                            <span class="badge bg-success">Hoàn thành</span>
+                            break;
+
+                        default:
+                            <span class="badge bg-danger">Đã hủy</span>
+                            break;
+                    }
+
+                </td>
+
+                <td>@item.Notes</td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.Id"
+                       class="btn btn-success btn-sm">
+
+                        Chi tiết
+
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.Id"
+                       class="btn btn-warning btn-sm">
+
+                        Sửa
+
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.Id"
+                       onclick="return confirm('Bạn có chắc muốn xóa?')"
+                       class="btn btn-danger btn-sm">
+
+                        Xóa
+
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

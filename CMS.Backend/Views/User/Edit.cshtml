@@ -1,0 +1,14 @@
+@model CMS.Data.Entities.User
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "SỬA TÀI KHOẢN";
+}
+<h2 class="mb-4">SỬA TÀI KHOẢN</h2>
+<form asp-action="Edit" method="post" class="card card-body shadow-sm border-0">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3"><label class="form-label">Tên đăng nhập</label><input asp-for="Username" class="form-control" required /></div>
+    <div class="mb-3"><label class="form-label">Mật khẩu</label><input asp-for="PasswordHash" class="form-control" type="password" required /></div>
+    <div class="mb-3"><label class="form-label">Họ và tên</label><input asp-for="FullName" class="form-control" required /></div>
+    <div class="mb-3"><label class="form-label">Quyền hạn</label><select asp-for="Role" class="form-control"><option value="Admin">Admin</option><option value="Editor">Editor</option><option value="User">User</option></select></div>
+    <div><button type="submit" class="btn btn-success">Cập nhật</button> <a asp-action="Index" class="btn btn-secondary">Quay lại</a></div>
+</form>

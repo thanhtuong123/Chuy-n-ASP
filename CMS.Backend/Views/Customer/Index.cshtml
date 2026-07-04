@@ -1,0 +1,6 @@
+@model IEnumerable<CMS.Data.Entities.Customer>
+@{ Layout = "_LayoutAdmin"; ViewData["Title"] = "Quản lý khách hàng"; }
+<div class="d-flex justify-content-between align-items-center mb-4"><h2>QUẢN LÝ KHÁCH HÀNG</h2><a asp-action="Create" class="btn btn-success btn-sm">+ Thêm khách hàng</a></div>
+<table class="table table-bordered table-striped bg-white shadow-sm text-center"><thead class="table-dark"><tr><th>ID</th><th>Họ tên</th><th>Email</th><th>SĐT</th><th>Địa chỉ</th><th>Thao tác</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Id</td><td class="fw-bold">@item.FullName</td><td>@item.Email</td><td>@item.Phone</td><td>@item.Address</td><td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Sửa</a> <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Xóa khách hàng này?')">Xóa</a></td></tr> }
+</tbody></table>

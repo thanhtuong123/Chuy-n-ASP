@@ -1,0 +1,13 @@
+.vs/
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+**/.DS_Store
+*.user
+*.suo
+*.cache
+*.log
+CMS.frontend/.env.local
+CMS.frontend/.env.*.local
+
